@@ -21,7 +21,16 @@ function helloWorld(){
   console.log("Running helloWorld()")
   firebase.database().ref('/').set(
     {
-      message: 'Hello World!'
+      message: 'Kia ora te ao'
+    }
+  )
+}
+
+function Goodbye(){
+  console.log("Running goodbye)")
+  firebase.database().ref('/').set(
+    {
+      message: 'ka kite āno'
     }
   )
 }

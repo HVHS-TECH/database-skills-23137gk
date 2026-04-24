@@ -8,14 +8,15 @@
 // Return: n/a
 /**************************************************************/
   const firebaseConfig = {
-    apiKey: ,
-    authDomain: ,
-    databaseURL: ,
-    projectId: ,
-    storageBucket: ,
-    messagingSenderId:,
-    appId:
-  };
+  apiKey: "AIzaSyCe4hPfEDRZM-DjwRf7QbIo0hpExQVkzNc",
+  authDomain: "gauri-kaushik-12comp.firebaseapp.com",
+  databaseURL: "https://gauri-kaushik-12comp-default-rtdb.firebaseio.com",
+  projectId: "gauri-kaushik-12comp",
+  storageBucket: "gauri-kaushik-12comp.firebasestorage.app",
+  messagingSenderId: "873182020840",
+  appId: "1:873182020840:web:633a42df5371f52179f55d",
+  measurementId: "G-266SFTSZMB"
+};
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
