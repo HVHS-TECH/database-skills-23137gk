@@ -44,6 +44,9 @@
   <script src="script.js"></script>
   <script src="script.js"></script>
 
+  firebase.database().ref('/message').once('value', DO_THIS)
+  <button onclick="simpleRead()">Read message</button>
+
   <button onclick="simpleRead()">Read message</button>
 
   highscoreTable = {
