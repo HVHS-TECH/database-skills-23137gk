@@ -44,6 +44,27 @@
   <script src="script.js"></script>
   <script src="script.js"></script>
 
+  <button onclick="simpleRead()">Read message</button>
+
+  highscoreTable = {
+    game1: {
+      users: {
+        Dhruv:999,
+        lola:1000,
+        shasha:7,
+        yug:8932492,
+      }
+    },
+      game2: {
+        users: {
+          Dhruv: 13,
+          lola: 14,
+          sasha: 3,
+          yug: 12
+        }
+    }
+  }
+  firebase.database().ref('/').set(highscoreTable)
 </body>
 
 </html>

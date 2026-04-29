@@ -34,3 +34,24 @@ function Goodbye(){
     }
   )
 }
+
+function DO_THIS(snapshot) {
+  console.log (snapshot.val());
+}
+
+function simpleRead() {
+  console.log("Reading message");
+  firebase.database().ref('/').child('message').once('value', displayRead);
+  console.log("Leaving simpleRead")
+}
+
+function displayRead(snapshot) {
+  console.log("Running displayRead(), the message is: " + snapshot.val())
+  HTML_OUTPUT.innerHTML = snapshot.val();
+}
+
+function fb_readListener() {
+  console.log("Read Listener");
+  firebase.database().ref('/message').on('value', fb_logDatabaseRead)
+}
+
