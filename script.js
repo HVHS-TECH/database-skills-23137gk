@@ -26,6 +26,8 @@ function helloWorld(){
   )
 }
 
+
+
 function Goodbye(){
   console.log("Running goodbye)")
   firebase.database().ref('/').set(
@@ -35,9 +37,12 @@ function Goodbye(){
   )
 }
 
+
+
 function DO_THIS(snapshot) {
  console.log (snapshot.val());
 }
+
 
 
 function simpleRead() {
@@ -46,12 +51,22 @@ function simpleRead() {
  console.log("Leaving simpleRead")
 }
 
+
+
+
 function fb_readError(error) {
   console.log('There was an error an error reading the message');
   console.error(error);
 }
 
+
+
+
+
 function display(snapshot) {
+
+  // null checks 
+
   var dbData = snapshot.val();
   if (dbData == null) { // if there is no data, dbData will be null
     console.log('There was no record when trying to read the message');
@@ -59,13 +74,47 @@ function display(snapshot) {
   else {
     console.log('The message is:' + dbData)
   }
+
+  console.log("Running display(), the message is:" + snapshot.val())
+  HTML_OUTPUT.innerHTML = snapshot.val();
 }
-  // console.log("Running display(), the message is:" + snapshot.val())
-  // HTML_OUTPUT.innerHTML = snapshot.val();
 
 
 
+
+
+// read listener - real time data synchronisation, connection between database and application
 function fb_readListener() {
  console.log("Read Listener");
  firebase.database().ref('/message').on('value', fb_logDatabaseRead)
+}
+
+
+// writing more complex data
+firebase.database().ref('/').set(
+  {
+    game1: {
+      users: {
+        Dhruv: 9999,
+        Jack: 10000,
+        Toby: 9,
+        Yug: 98436
+      }
+    }
+  }
+);
+
+
+
+// more complex scores
+highscoreTable = {
+  game1: {
+    users1: {
+       name: "Dhruv",
+       score: 9999
+    }
+    users2: {
+      Name: 
+    }
+  }
 }
