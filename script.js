@@ -106,15 +106,32 @@ firebase.database().ref('/').set(
 
 
 
+
 // more complex scores
+console.log ("Highscore")
 highscoreTable = {
   game1: {
+
     users1: {
        name: "Dhruv",
        score: 9999
-    }
+    },
+
     users2: {
-      Name: 
+      Name: "Jack",
+      Score: 10000
+    },
+
+    users3: {
+      Name: "Nityaa",
+      Score: 200
+    },
+
+    users4: {
+      Name: "Yug",
+      Score: 98436
     }
+
   }
 }
+firebase.database().ref('/').set(highscoreTable)
