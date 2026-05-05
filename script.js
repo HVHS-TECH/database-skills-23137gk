@@ -6,7 +6,7 @@
  **************************************************************
  **************************************************************/
 
-const HTML_OUTPUT = document.getElementById("databaseOutput");
+//const HTML_OUTPUT = document.getElementById("databaseOutput");
 
 /**************************************************************/
 // helloWorld()
@@ -108,7 +108,6 @@ firebase.database().ref('/').set(
 
 
 // more complex scores
-console.log ("Highscore")
 highscoreTable = {
   game1: {
 
@@ -135,3 +134,28 @@ highscoreTable = {
   }
 }
 firebase.database().ref('/').set(highscoreTable)
+
+
+
+
+function fb_readHighScores() {
+  console.log("Reading high scores");
+  firebase.database().ref('/game1/users1').once('value', idk, fb_readError)
+  console.log("Read high scores")
+}
+
+function idk(apple) {
+  console.log("i dont know")
+  console.log(apple.val())
+}
+
+/*function displayPath(snapshot) {
+  var dbData = snapshot.val();
+  console.log("Read the path")
+  console.log(dbData);
+  console.log(dbData["jack"]);
+  let names = Object.keys(dbData)
+  console.log(names)
+  for(i=0; i<names.length)
+}
+  */
