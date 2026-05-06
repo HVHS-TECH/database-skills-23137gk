@@ -145,17 +145,57 @@ function fb_readHighScores() {
 }
 
 function idk(apple) {
-  console.log("i dont know")
+  console.log("Displaying high score")
   console.log(apple.val())
+  console.log("Dhruv got " + highscoreTable["Dhruv"]+ " points")
+ 
 }
 
-/*function displayPath(snapshot) {
+
+// creating objects
+var person = {
+  firstname: "Jane",
+  lastName: "Gray",
+  eyeColor: "gold"
+};
+person["age"] = 20;
+
+
+
+function displayPath(snapshot) {
   var dbData = snapshot.val();
   console.log("Read the path")
   console.log(dbData);
   console.log(dbData["jack"]);
   let names = Object.keys(dbData)
   console.log(names)
-  for(i=0; i<names.length)
+  for(i=0; i<names.length; i++) {
+    let key = names[i];
+    console.log("Score "+ i +" is for "+ key)
+  } 
 }
-  */
+
+
+/*
+var person = {
+  name: {
+    first: "jane",
+    last: "Gray"
+  }
+  age: 20,
+  eyeColor: "gold"
+};
+*/
+
+/*
+var person = {
+  age: 20,
+  eyeColor: "gold"
+};
+var nameObject = {
+  first: "jane",
+  "Gray"
+}
+person["name"] = nameObject
+*/
+
