@@ -145,9 +145,10 @@ function fb_readHighScores() {
 }
 
 function idk(apple) {
+  let highScores = apple.val()
   console.log("Displaying high score")
   console.log(apple.val())
-  console.log("Dhruv got " + highscoreTable["Dhruv"]+ " points")
+  console.log("Dhruv got " + apple.val()["Dhruv"]+ " points")
  
 }
 
@@ -162,6 +163,22 @@ person["age"] = 20;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 function displayPath(snapshot) {
   var dbData = snapshot.val();
   console.log("Read the path")
@@ -173,7 +190,17 @@ function displayPath(snapshot) {
     let key = names[i];
     console.log("Score "+ i +" is for "+ key)
   } 
-}
+}*/
+
+
+
+
+
+
+
+
+
+
 
 
 /*
