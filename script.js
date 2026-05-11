@@ -91,6 +91,7 @@ function fb_readListener() {
 
 
 // writing more complex data
+/*
 firebase.database().ref('/').set(
   {
     game1: {
@@ -103,32 +104,25 @@ firebase.database().ref('/').set(
     }
   }
 );
+firebase.database().ref('/game1/users/Jack').set(896329823);
 
+let user = "Toby";
+let score = "0"
+firebase.database().ref('/game1/users/'+user).set(
+  score
+);
+*/
 
 
 
 // more complex scores
 highscoreTable = {
   game1: {
-
-    users1: {
-       name: "Dhruv",
-       score: 9999
-    },
-
-    users2: {
-      Name: "Jack",
-      Score: 10000
-    },
-
-    users3: {
-      Name: "Nityaa",
-      Score: 200
-    },
-
-    users4: {
-      Name: "Yug",
-      Score: 98436
+    users: {
+       Dhruv: 9999,
+        Jack: 10000,
+        Toby: 9,
+        Yug: 98436
     }
 
   }
@@ -137,19 +131,17 @@ firebase.database().ref('/').set(highscoreTable)
 
 
 
-
 function fb_readHighScores() {
   console.log("Reading high scores");
-  firebase.database().ref('/game1/users1').once('value', idk, fb_readError)
+  firebase.database().ref('/game1/users').orderByValue().limitToLast(4).once('value', fb_displayHighScores, fb_readError)
   console.log("Read high scores")
 }
 
-function idk(apple) {
-  let highScores = apple.val()
+function fb_displayHighScores(snapshot) {
+  let highScores = snapshot.val()
   console.log("Displaying high score")
-  console.log(apple.val())
-  console.log("Dhruv got " + apple.val()["Dhruv"]+ " points")
- 
+  console.log(snapshot.val())
+ console.log("Dhruv got " + highScores["Dhruv"]+ " points")
 }
 
 
@@ -165,64 +157,30 @@ person["age"] = 20;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function displayPath(snapshot) {
-  var dbData = snapshot.val();
-  console.log("Read the path")
-  console.log(dbData);
-  console.log(dbData["jack"]);
-  let names = Object.keys(dbData)
-  console.log(names)
-  for(i=0; i<names.length; i++) {
-    let key = names[i];
-    console.log("Score "+ i +" is for "+ key)
-  } 
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-var person = {
-  name: {
-    first: "jane",
-    last: "Gray"
-  }
-  age: 20,
-  eyeColor: "gold"
-};
-*/
-
-/*
-var person = {
-  age: 20,
-  eyeColor: "gold"
-};
-var nameObject = {
-  first: "jane",
-  "Gray"
+var highscores = snapshot.val();
+let names = Object.keys(highScores);
+for(i = 0; i < names.length; i++) {
+  let key = names[i];
+  console.log("Scores "+i+" if for "+ key)
 }
-person["name"] = nameObject
-*/
+
+function fb_displayHighScores(snapshot) {
+  snapshot.forEach(fb_showOneScore)
+}
+
+
+function fb_showOneScore(child) {
+  console.log(child.key+" got "+ child.val()+" points");
+}
+
+
+
+
+
+
+
+
+
+
+
 
