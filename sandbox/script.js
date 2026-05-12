@@ -7,3 +7,4 @@ var person = {
 person["age"] = 30
 console.log(person["eyeColor"])
 person["school"] = "hvhs"
+

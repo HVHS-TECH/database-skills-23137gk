@@ -122,18 +122,17 @@ highscoreTable = {
        Dhruv: 9999,
         Jack: 10000,
         Toby: 9,
-        Yug: 98436
+        Yug: 5400
     }
-
   }
 }
-firebase.database().ref('/').set(highscoreTable)
+//firebase.database().ref('/').set(highscoreTable)
 
 
 
 function fb_readHighScores() {
   console.log("Reading high scores");
-  firebase.database().ref('/game1/users').orderByValue().limitToLast(4).once('value', fb_displayHighScores, fb_readError)
+  firebase.database().ref('/game1/users').orderByValue().once('value', fb_displayHighScores, fb_readError)
   console.log("Read high scores")
 }
 
@@ -156,13 +155,14 @@ person["age"] = 20;
 
 
 
-
+/*
 var highscores = snapshot.val();
 let names = Object.keys(highScores);
 for(i = 0; i < names.length; i++) {
   let key = names[i];
   console.log("Scores "+i+" if for "+ key)
 }
+*/
 
 function fb_displayHighScores(snapshot) {
   snapshot.forEach(fb_showOneScore)
@@ -176,8 +176,36 @@ function fb_showOneScore(child) {
 
 
 
+var GLOBAL_user; // Google's user object
 
 
+// set up a listener for the login state of the user.
+function fb_login() {
+  firebase.auth().onAuthStateChanged(LOGIN_CALLBACK);
+}
+
+
+// run when the login state of the user changes
+function fb_handleLogin() {
+  if (_user) {
+    console.log("User is logged in")
+    GLOBAL_user = _user; //save the user details object to a global variable
+  } else {
+    console.log("User is NOT logged in - Starting the popup process")
+    fb_popupLogin
+  }
+}
+
+
+// run the google login popup
+function fb_popupLogin() {
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    GLOBAL_user = result.user; // save the user details object to a global variable
+    console.log("User has logged in")
+  });
+}
 
 
 
