@@ -1,12 +1,11 @@
 /**************************************************************
- **************************************************************
  **                                                          **
  ** script.js is where you will write most of your code.     **
  **                                                          **
  **************************************************************
  **************************************************************/
 
-//const HTML_OUTPUT = document.getElementById("databaseOutput");
+const HTML_OUTPUT = document.getElementById("databaseOutput");
 
 /**************************************************************/
 // helloWorld()
@@ -17,7 +16,7 @@
 // The ref('/') part tells the operation to write to the base level of the database "/"
 // This means it replaces the whole database with message:Hello World
 /**************************************************************/
-function helloWorld(){
+function helloWorld() {
   console.log("Running helloWorld()")
   firebase.database().ref('/').set(
     {
@@ -28,8 +27,8 @@ function helloWorld(){
 
 
 
-function Goodbye(){
-  console.log("Running goodbye)")
+function Goodbye() {
+  console.log("Running goodbye")
   firebase.database().ref('/').set(
     {
       message: 'ka kite āno'
@@ -37,11 +36,6 @@ function Goodbye(){
   )
 }
 
-
-
-function DO_THIS(snapshot) {
- console.log (snapshot.val());
-}
 
 
 
@@ -52,21 +46,7 @@ function simpleRead() {
 }
 
 
-
-
-function fb_readError(error) {
-  console.log('There was an error an error reading the message');
-  console.error(error);
-}
-
-
-
-
-
 function display(snapshot) {
-
-  // null checks 
-
   var dbData = snapshot.val();
   if (dbData == null) { // if there is no data, dbData will be null
     console.log('There was no record when trying to read the message');
@@ -83,10 +63,19 @@ function display(snapshot) {
 
 
 
+function fb_readError(error) {
+  console.log('There was an error an error reading the message');
+  console.error(error);
+}
+
+
+
+
+
 // read listener - real time data synchronisation, connection between database and application
 function fb_readListener() {
  console.log("Read Listener");
- firebase.database().ref('/message').on('value', fb_logDatabaseRead)
+ firebase.database().ref('/message').on('value', display)
 }
 
 
@@ -155,17 +144,11 @@ person["age"] = 20;
 
 
 
-/*
-var highscores = snapshot.val();
-let names = Object.keys(highScores);
-for(i = 0; i < names.length; i++) {
-  let key = names[i];
-  console.log("Scores "+i+" if for "+ key)
-}
-*/
+
+
 
 function fb_displayHighScores(snapshot) {
-  snapshot.forEach(fb_showOneScore)
+  snapshot.forEach(fb_showOneScoreS)
 }
 
 
@@ -175,9 +158,7 @@ function fb_showOneScore(child) {
 
 
 
-
 var GLOBAL_user; // Google's user object
-
 
 // set up a listener for the login state of the user.
 function fb_login() {
@@ -206,8 +187,6 @@ function fb_popupLogin() {
     console.log("User has logged in")
   });
 }
-
-
 
 
 
