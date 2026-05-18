@@ -118,6 +118,21 @@ highscoreTable = {
 //firebase.database().ref('/').set(highscoreTable)
 
 
+function resetScores() {
+
+  firebase.database().ref('/').set({
+    game1: {
+      users: {
+        Dhruv: 9999,
+        Jack: 10000,
+        Toby: 9,
+        Yug: 5400
+      }
+    }
+  })
+
+}
+
 
 function fb_readHighScores() {
   console.log("Reading high scores");
@@ -130,6 +145,7 @@ function fb_displayHighScores(snapshot) {
   console.log("Displaying high score")
   console.log(snapshot.val())
  console.log("Dhruv got " + highScores["Dhruv"]+ " points")
+ snapshot.forEach(fb_showOneScore)
 }
 
 
@@ -146,11 +162,11 @@ person["age"] = 20;
 
 
 
-
+/*
 function fb_displayHighScores(snapshot) {
-  snapshot.forEach(fb_showOneScoreS)
+  snapshot.forEach(fb_showOneScore)
 }
-
+*/
 
 function fb_showOneScore(child) {
   console.log(child.key+" got "+ child.val()+" points");
@@ -167,13 +183,13 @@ function fb_login() {
 
 
 // run when the login state of the user changes
-function fb_handleLogin() {
+function fb_handleLogin(_user) {
   if (_user) {
     console.log("User is logged in")
     GLOBAL_user = _user; //save the user details object to a global variable
   } else {
     console.log("User is NOT logged in - Starting the popup process")
-    fb_popupLogin
+    fb_popupLogin();
   }
 }
 
